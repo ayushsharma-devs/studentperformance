@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Performance Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">Student Performance Predictor</h2>
+    <form method="POST" action="/predict" class="form">
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender">
+          <option value="0" {% if gender == '0' %}selected{% endif %}>Male</option>
+          <option value="1" {% if gender == '1' %}selected{% endif %}>Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="prep">Test Preparation Course:</label>
+        <select name="prep" id="prep">
+          <option value="0" {% if prep == '0' %}selected{% endif %}>None</option>
+          <option value="1" {% if prep == '1' %}selected{% endif %}>Completed</option>
+        </select>
+      </div>
+      <input type="submit" value="Predict" class="btn"/>
+    </form>
+
+    {% if result %}
+      <h3 class="result">Prediction: {{ result }} ✅</h3>
+    {% endif %}
+  </div>
+</body>
+</html>
